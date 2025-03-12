@@ -36,7 +36,7 @@ on:
         required: true
         default: >-
           {
-            "version": "1.3.7",
+            "version": "1.3.8",
             "patch": "1",
             "urlLink": "https://aiuto.mynet.it",
             "downloadLink": "https://aiuto.mynet.it",
@@ -458,10 +458,8 @@ jobs:
             export DEB_ARCH=${{ matrix.job.deb_arch }}
             mkdir -p flutter/tmpdeb/usr/lib/${{ inputs.filename }}
             cp ./custom.txt ./flutter/tmpdeb/usr/lib/${{ inputs.filename }}/custom.txt
-            if [[ "${{ inputs.logolink }}" != "false" ]]; then
-              cp repository/img/logo.png ./flutter/assets/logo.png
-            fi
             if [[ "${{ hashFiles('repository/img/logo.png') }}" != "" ]]; then
+              cp repository/img/logo.png ./flutter/assets/logo.png
               mv ./flutter/assets/icon.svg ./flutter/assets/icon.svg.bak
               convert ./res/icon.png ./flutter/assets/icon.svg
               convert ./res/128x128.png -resize 200% ./flutter/assets/128x128@2x.png || true
