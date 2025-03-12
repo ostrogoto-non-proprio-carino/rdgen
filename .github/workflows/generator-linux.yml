@@ -471,6 +471,7 @@ jobs:
             fi
 
             # Change files names in the output .deb
+            sed -ie "s|\(systemctl\s\+\S\+\s\){app_name}|\1${{ inputs.filename }}|g" src/platform/linux.rs
             sed -ie "s|\(cp .* \)tmpdeb/usr/share/rustdesk/files/systemd/|\1tmpdeb/usr/share/rustdesk/files/systemd/${{ inputs.filename }}.service|g" build.py
             sed -ie "s|cp -r \(.\+\)\* \([^ ]\+\)/rustdesk|mv \1rustdesk \1${{ inputs.filename }}; cp -r \1\* \2/${{ inputs.filename }}|g" build.py
             sed -ie "s|\(tmpdeb/[^ ]*\)rustdesk|\1${{ inputs.filename }}|g" build.py
